@@ -1,4 +1,6 @@
-package com.jcraft.jsch;
+package uk.co.daveshepherd.examples.jbossdeploy.jsch.model;
+
+import com.jcraft.jsch.UserInfo;
 
 public class BasicPasswordUserInfo implements UserInfo {
 

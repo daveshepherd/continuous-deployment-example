@@ -1,4 +1,4 @@
-package com.jcraft.jsch;
+package uk.co.daveshepherd.examples.jbossdeploy.jsch;
 
 import static org.junit.Assert.assertTrue;
 
@@ -6,7 +6,13 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
-public class JSchTest {
+import com.jcraft.jsch.JSch;
+import com.jcraft.jsch.JSchException;
+import com.jcraft.jsch.Session;
+
+import uk.co.daveshepherd.examples.jbossdeploy.jsch.model.BasicPasswordUserInfo;
+
+public class SshConnectionTest {
 
     private JSch jsch;
 
