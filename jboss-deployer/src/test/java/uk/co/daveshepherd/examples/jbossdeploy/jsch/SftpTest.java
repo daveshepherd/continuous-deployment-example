@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.io.File;
 import java.util.Collection;
 import java.util.Vector;
 
@@ -25,6 +26,7 @@ import com.jcraft.jsch.SftpException;
 public class SftpTest {
 
     private static final String TEST_RESOURCE_DIR = "src/test/resources/";
+    private static final String TEST_OUTPUT_DIR = "target/test-files/";
     private static final String TEST_FILE = "test-file";
 
     private JSch jsch;
@@ -49,10 +51,12 @@ public class SftpTest {
         sftpChannel.connect();
         assertTrue("channel not connected", sftpChannel.isConnected());
         removeAllRemoteFiles();
+        removeAllLocalFiles();
     }
 
     @After
     public void tearDown() throws SftpException {
+        removeAllLocalFiles();
         if (sftpChannel.isConnected()) {
             removeAllRemoteFiles();
         }
@@ -65,6 +69,15 @@ public class SftpTest {
         uploadFile(TEST_FILE);
 
         assertFileExistsOnServer(TEST_FILE);
+    }
+    
+    @Test
+    public void testDownloadFile() throws SftpException {
+    	uploadFile(TEST_FILE);
+    	
+    	downloadFile(TEST_FILE);
+    	
+    	assertLocalTestFileExists();
     }
 
     @Test
@@ -110,7 +123,8 @@ public class SftpTest {
 
     private void initialiseConnectionDetails() {
         username = "jboss-deployer";
-        host = "10.180.8.27";
+//        host = "10.180.8.27";
+        host = "10.11.12.53";
         password = "password";
         remoteDeployDirectory = "/home/jboss-deployer/deploy/";
     }
@@ -129,12 +143,25 @@ public class SftpTest {
         sftpChannel.put(TEST_RESOURCE_DIR + filename, remoteDeployDirectory + filename, ChannelSftp.OVERWRITE);
     }
 
-    private void removeRemoteFile(String filename) throws SftpException {
+    private void downloadFile(final String filename) throws SftpException {
+    	createLocalOutputDirectory();
+    	
+        sftpChannel.get(remoteDeployDirectory + filename, TEST_OUTPUT_DIR + filename);
+    }
+
+	private void removeRemoteFile(String filename) throws SftpException {
         sftpChannel.rm(remoteDeployDirectory + filename);
     }
 
     private void removeAllRemoteFiles() throws SftpException {
         sftpChannel.rm(remoteDeployDirectory + "*");
+    }
+    
+    private void removeAllLocalFiles() {
+		File file = new File(TEST_OUTPUT_DIR);
+		if (file.exists()) {
+			file.delete();
+		}
     }
 
     private boolean findFileInList(final Vector<LsEntry> fileList, final String expectedfile) {
@@ -147,7 +174,19 @@ public class SftpTest {
         return found;
     }
 
-    private void assertFileExistsOnServer(String filename) throws SftpException {
+    private void createLocalOutputDirectory() {
+		File file = new File(TEST_OUTPUT_DIR);
+		if (!file.exists()) {
+			file.mkdir();
+		}
+	}
+
+	private void assertLocalTestFileExists() {
+		File file = new File(TEST_OUTPUT_DIR + TEST_FILE);
+		assertTrue("test file does not exist", file.exists());
+	}
+
+	private void assertFileExistsOnServer(String filename) throws SftpException {
         @SuppressWarnings("unchecked")
         final Vector<LsEntry> remoteFiles = sftpChannel.ls(remoteDeployDirectory);
     
