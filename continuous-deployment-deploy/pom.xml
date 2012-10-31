@@ -1,0 +1,131 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>uk.co.daveshepherd.examples</groupId>
+    <artifactId>continuous-deployment-example</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+
+  <artifactId>continuous-deployment-deploy</artifactId>
+  <packaging>pom</packaging>
+
+  <name>continuous-deployment-deploy</name>
+  <build>
+<plugins>
+<plugin>
+  <groupId>org.codehaus.cargo</groupId>
+  <artifactId>cargo-maven2-plugin</artifactId>
+  <version>1.3.0</version>
+  <configuration>
+    <container>
+      <containerId>jboss6x</containerId>
+      <type>remote</type>
+    </container>
+    <configuration>
+      <type>runtime</type>
+                          <deployables>
+                            <deployable>
+                                <groupId>uk.co.daveshepherd.examples</groupId>
+                                <artifactId>continuous-deployment-web</artifactId>
+                                <type>war</type>
+                                <pingURL>http://localhost:8080/continuous-deployment-web/</pingURL>
+                            </deployable>
+                        </deployables>
+      <properties>
+                        	<cargo.hostname>10.11.12.53</cargo.hostname>
+                        	<cargo.rmi.port>1099</cargo.rmi.port>
+      </properties>
+    </configuration>
+  </configuration>
+  <dependencies>
+    <dependency>
+      <groupId>org.jboss.integration</groupId>
+      <artifactId>jboss-profileservice-spi</artifactId>
+      <version>5.1.0.GA</version>
+    </dependency>
+    <dependency>
+      <groupId>org.jboss.jbossas</groupId>
+      <artifactId>jboss-as-client</artifactId>
+      <version>5.1.0.GA</version>
+      <type>pom</type>
+    </dependency>
+  </dependencies>
+</plugin>
+</plugins>
+    </build>
+    <dependencies>
+        <dependency>
+            <groupId>uk.co.daveshepherd.examples</groupId>
+            <artifactId>continuous-deployment-web</artifactId>
+            <type>war</type>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+    <!--properties>
+        <jboss.username>admin</jboss.username>
+        <jboss.password>password</jboss.password>
+    </properties-->
+    <!--profiles>
+        <profile>
+            <id>uat</id>
+            <properties>
+                <tomcat.manager.url>http://localhost:8889/manager</tomcat.manager.url>
+            </properties>
+        </profile>
+    </profiles-->
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+<!--pluginRepositories>
+  <pluginRepository>
+    <id>repository.jboss.org_thirdparty-releases</id>
+    <name>JBoss.org third party releases repository</name>
+    <url>https://repository.jboss.org/nexus/content/repositories/thirdparty-releases</url>
+    <releases>
+      <enabled>true</enabled>
+    </releases>
+    <snapshots>
+      <enabled>false</enabled>
+    </snapshots>
+  </pluginRepository>
+  <pluginRepository>
+    <id>repository.jboss.org_thirdparty-uploads</id>
+    <name>JBoss.org third party uploads repository</name>
+    <url>https://repository.jboss.org/nexus/content/repositories/thirdparty-uploads</url>
+    <releases>
+      <enabled>true</enabled>
+    </releases>
+    <snapshots>
+      <enabled>false</enabled>
+    </snapshots>
+  </pluginRepository>
+</pluginRepositories>
+
+<repositories>
+  <repository>
+    <id>repository.jboss.org_thirdparty-releases</id>
+    <name>JBoss.org third party releases repository</name>
+    <url>https://repository.jboss.org/nexus/content/repositories/thirdparty-releases</url>
+    <releases>
+      <enabled>true</enabled>
+    </releases>
+    <snapshots>
+      <enabled>false</enabled>
+    </snapshots>
+  </repository>
+  <repository>
+    <id>repository.jboss.org_thirdparty-uploads</id>
+    <name>JBoss.org third party uploads repository</name>
+    <url>https://repository.jboss.org/nexus/content/repositories/thirdparty-uploads</url>
+    <releases>
+      <enabled>true</enabled>
+    </releases>
+    <snapshots>
+      <enabled>false</enabled>
+    </snapshots>
+  </repository>
+</repositories-->
+
+</project>
