@@ -26,7 +26,7 @@ public class SshConnectionTest {
         jsch = new JSch();
 
         username = "jboss-deployer";
-        host = "10.180.8.27";
+        host = "10.180.9.25";
         password = "password";
         privateKeyFilename = "";
     }

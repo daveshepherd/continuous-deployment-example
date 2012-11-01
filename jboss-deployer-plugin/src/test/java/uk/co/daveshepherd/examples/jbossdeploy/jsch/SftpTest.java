@@ -123,8 +123,8 @@ public class SftpTest {
 
     private void initialiseConnectionDetails() {
         username = "jboss-deployer";
-//        host = "10.180.8.27";
-        host = "10.11.12.53";
+        host = "10.180.9.25";
+//        host = "10.11.12.53";
         password = "password";
         remoteDeployDirectory = "/home/jboss-deployer/deploy/";
     }
