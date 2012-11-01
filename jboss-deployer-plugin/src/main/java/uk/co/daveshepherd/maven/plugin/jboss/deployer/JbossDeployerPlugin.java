@@ -1,13 +1,12 @@
-package sample.plugin;
+package uk.co.daveshepherd.maven.plugin.jboss.deployer;
 
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 
 /**
- * Says "Hi" to the user.
- * @goal sayhi
+ * @goal deploy
  */
-public class GreetingMojo extends AbstractMojo
+public class JbossDeployerPlugin extends AbstractMojo
 {
     public void execute() throws MojoExecutionException
     {

@@ -1,4 +1,4 @@
-package uk.co.daveshepherd.examples.jbossdeploy.jsch;
+package uk.co.daveshepherd.maven.plugin.jboss.deployer.jsch;
 
 import static org.junit.Assert.assertTrue;
 
@@ -10,7 +10,7 @@ import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.JSchException;
 import com.jcraft.jsch.Session;
 
-import uk.co.daveshepherd.examples.jbossdeploy.jsch.model.BasicPasswordUserInfo;
+import uk.co.daveshepherd.maven.plugin.jboss.deployer.jsch.model.BasicPasswordUserInfo;
 
 public class SshConnectionTest {
 

@@ -1,4 +1,4 @@
-package uk.co.daveshepherd.examples.jbossdeploy.jsch.model;
+package uk.co.daveshepherd.maven.plugin.jboss.deployer.jsch.model;
 
 import com.jcraft.jsch.UserInfo;
 

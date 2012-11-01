@@ -1,9 +1,12 @@
-package uk.co.daveshepherd.examples.jbossdeploy.jsch.model;
+package uk.co.daveshepherd.maven.plugin.jboss.deployer.jsch.model;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
+
+import uk.co.daveshepherd.maven.plugin.jboss.deployer.jsch.model.DeployableFileSelector;
+import uk.co.daveshepherd.maven.plugin.jboss.deployer.jsch.model.DeployableType;
 
 public class DeployableFileSelectorTest {
 

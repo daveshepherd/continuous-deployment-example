@@ -1,4 +1,4 @@
-package uk.co.daveshepherd.examples.jbossdeploy.jsch;
+package uk.co.daveshepherd.maven.plugin.jboss.deployer.jsch;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -12,9 +12,9 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import uk.co.daveshepherd.examples.jbossdeploy.jsch.model.BasicPasswordUserInfo;
-import uk.co.daveshepherd.examples.jbossdeploy.jsch.model.DeployableFileSelector;
-import uk.co.daveshepherd.examples.jbossdeploy.jsch.model.DeployableType;
+import uk.co.daveshepherd.maven.plugin.jboss.deployer.jsch.model.BasicPasswordUserInfo;
+import uk.co.daveshepherd.maven.plugin.jboss.deployer.jsch.model.DeployableFileSelector;
+import uk.co.daveshepherd.maven.plugin.jboss.deployer.jsch.model.DeployableType;
 
 import com.jcraft.jsch.ChannelSftp;
 import com.jcraft.jsch.ChannelSftp.LsEntry;
