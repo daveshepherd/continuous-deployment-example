@@ -19,24 +19,18 @@
 				<artifactId>jboss-maven-plugin</artifactId>
 				<version>1.5.0</version>
 				<configuration>
-					<hostName>jboss-demo</hostName>
+					<hostName>10.11.12.53</hostName>
 					<port>8080</port>
 					<fileNames>
-						<fileName>http://java-build01.dev.impello.co.uk:7090/archiva/repository/snapshots/com/firstutility/reach/order-adaptors/1.0.0-SNAPSHOT/order-adaptors-1.0.0-20121029.034811-70.war</fileName>
+						<fileName>http://10.11.12.48:8080/job/continuous%20deployment%20example%20-%20initial%20build/${build.no}/artifact/continuous-deployment-web/target/continuous-deployment-web-${release.no}.war</fileName>
 					</fileNames>
 				</configuration>
 			</plugin>
 		</plugins>
 	</build>
-	<dependencies>
-		<dependency>
-			<groupId>uk.co.daveshepherd.examples</groupId>
-			<artifactId>continuous-deployment-web</artifactId>
-			<type>war</type>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-	</dependencies>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<build.no>8</build.no>
+		<release.no>0.0.8</release.no>
 	</properties>
 </project>
