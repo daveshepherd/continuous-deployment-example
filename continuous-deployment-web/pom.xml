@@ -24,8 +24,8 @@
 				<artifactId>jelastic-maven-plugin</artifactId>
 				<version>1.6</version>
 				<configuration>
-					<email>jelastic@endor.me.uk</email>
-					<password>computer</password>
+					<email>${jelastic.username}</email>
+					<password>${jelastic.password}</password>
 					<context>continous-deployment</context>
 					<environment>ds-dev</environment>
 					<api_hoster>app.j.layershift.co.uk</api_hoster>
