@@ -12,7 +12,10 @@ public class DeploymentTest {
 
     @Test
     public void testDeployment() throws Exception {
-        final HttpGet request = new HttpGet("https://ds-dev.j.layershift.co.uk/continous-deployment/");
+      
+       
+       
+        final HttpGet request = new HttpGet("http://ds-dev.j.layershift.co.uk/continous-deployment/");
         try {
             final DefaultHttpClient httpclient = new DefaultHttpClient();
 
