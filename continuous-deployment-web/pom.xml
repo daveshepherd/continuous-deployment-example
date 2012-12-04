@@ -36,6 +36,7 @@
 
 	<pluginRepositories>
 		<pluginRepository>
+			<!-- Required for jelastic-maven-plugin -->
 			<id>sonatype-oss-public</id>
 			<url>https://oss.sonatype.org/content/groups/public</url>
 			<releases>
