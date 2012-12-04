@@ -17,29 +17,31 @@ public class DeploymentTest {
     public void testDeployment() throws Exception {
 
         final HttpGet request = new HttpGet("http://ds-dev.j.layershift.co.uk/continous-deployment/");
-        try {
-            final DefaultHttpClient httpclient = new DefaultHttpClient();
 
-            retry(new RetryCall() {
-                public Boolean call() {
-                    HttpResponse response;
-                    try {
-                        response = httpclient.execute(request);
-                    } catch (final Exception e) {
-                        System.err.println("Exception executing http request: " + e.getMessage());
-                        return false;
-                    }
+        final DefaultHttpClient httpclient = new DefaultHttpClient();
 
-                    final int status = response.getStatusLine().getStatusCode();
+        retry(new RetryCall() {
 
-                    System.out.println("HTTP status code: " + status);
-                    return HttpStatus.SC_OK == status;
+            public Boolean call() {
+
+                HttpResponse response;
+                try {
+                    response = httpclient.execute(request);
+                } catch (final Exception e) {
+                    System.err.println("Exception executing http request: " + e.getMessage());
+                    return false;
+                } finally {
+                    request.releaseConnection();
                 }
-            });
 
-        } finally {
-            request.releaseConnection();
-        }
+                final int status = response.getStatusLine().getStatusCode();
+
+                System.out.println("HTTP status code: " + status);
+                return HttpStatus.SC_OK == status;
+            }
+
+        });
+
     }
 
     public void retry(final RetryCall block) throws InterruptedException {
